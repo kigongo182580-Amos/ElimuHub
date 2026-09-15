@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Elimuhub - Create Account</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        Elimu<span>hub</span>
+    </div>
+
+    <nav class="navbar">
+
+        <a href="index.html">Home</a>
+        <a href="notes.html">Notes</a>
+        <a href="#">Courses</a>
+        <a href="#">About Us</a>
+        <a href="#contact">Contact</a>
+
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Join <span>Elimuhub</span>
+        </h1>
+
+        <h2>
+            Create Your Account
+        </h2>
+
+        <p>
+            Tengeneza account yako ili kuendelea
+            kutumia Elimuhub.
+        </p>
+
+
+        <form
+            id="registerForm"
+            style="
+                max-width:420px;
+                margin:30px auto 0;
+                text-align:left;
+            "
+        >
+
+            <label
+                for="fullname"
+                style="display:block;margin-bottom:8px;font-weight:bold;"
+            >
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="fullname"
+                placeholder="Enter your full name"
+                required
+                style="
+                    width:100%;
+                    padding:14px;
+                    margin-bottom:20px;
+                    border:1px solid #cbd5e1;
+                    border-radius:8px;
+                "
+            >
+
+
+            <label
+                for="email"
+                style="display:block;margin-bottom:8px;font-weight:bold;"
+            >
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+                style="
+                    width:100%;
+                    padding:14px;
+                    margin-bottom:20px;
+                    border:1px solid #cbd5e1;
+                    border-radius:8px;
+                "
+            >
+
+
+            <label
+                for="password"
+                style="display:block;margin-bottom:8px;font-weight:bold;"
+            >
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Create password"
+                required
+                minlength="6"
+                style="
+                    width:100%;
+                    padding:14px;
+                    margin-bottom:20px;
+                    border:1px solid #cbd5e1;
+                    border-radius:8px;
+                "
+            >
+
+
+            <label
+                for="confirmPassword"
+                style="display:block;margin-bottom:8px;font-weight:bold;"
+            >
+                Confirm Password
+            </label>
+
+            <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm password"
+                required
+                minlength="6"
+                style="
+                    width:100%;
+                    padding:14px;
+                    margin-bottom:25px;
+                    border:1px solid #cbd5e1;
+                    border-radius:8px;
+                "
+            >
+
+
+            <button
+                type="submit"
+                class="login-btn"
+                style="width:100%;padding:14px;"
+            >
+                Create Account
+            </button>
+
+        </form>
+
+
+        <p style="margin-top:25px;">
+
+            Already have an account?
+
+            <a
+                href="login.html"
+                style="color:#2563eb;font-weight:bold;"
+            >
+                Login
+            </a>
+
+        </p>
+
+
+        <br>
+
+        <a
+            href="index.html"
+            class="secondary-btn"
+        >
+            Back to Home
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer
+    class="footer"
+    id="contact"
+>
+
+    <div class="footer-content">
+
+        <div>
+
+            <h2>
+                Elimu<span>hub</span>
+            </h2>
+
+            <p>
+                Sehemu bora ya kupata notes
+                na maarifa kwa wanafunzi.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Quick Links
+            </h3>
+
+            <a href="index.html">Home</a>
+            <a href="notes.html">Notes</a>
+            <a href="#">Courses</a>
+            <a href="#">About Us</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Contact
+            </h3>
+
+            <p>
+                Email: Kigongo@gmail.com
+            </p>
+
+            <p>
+                Phone: 0740330068
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        <p>
+            © 2026 Elimuhub. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+document
+.getElementById("registerForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    const name =
+        document
+        .getElementById("fullname")
+        .value
+        .trim();
+
+
+    const email =
+        document
+        .getElementById("email")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const password =
+        document
+        .getElementById("password")
+        .value;
+
+
+    const confirmPassword =
+        document
+        .getElementById("confirmPassword")
+        .value;
+
+
+    if (password !== confirmPassword) {
+
+        alert("Passwords hazifanani.");
+
+        return;
+
+    }
+
+
+    if (password.length < 6) {
+
+        alert(
+            "Password lazima iwe na characters 6 au zaidi."
+        );
+
+        return;
+
+    }
+
+
+    const account = {
+
+        name: name,
+
+        email: email,
+
+        password: password
+
+    };
+
+
+    /* SAVE ACCOUNT */
+
+    localStorage.setItem(
+        "elimuhubUser",
+        JSON.stringify(account)
+    );
+
+
+    /* CHECK IF SAVED */
+
+    const saved =
+        localStorage.getItem(
+            "elimuhubUser"
+        );
+
+
+    if (saved) {
+
+        alert(
+            "Account imetengenezwa successfully!"
+        );
+
+        window.location.href =
+            "./login.html";
+
+    } else {
+
+        alert(
+            "Account haikuweza kuhifadhiwa. Jaribu tena."
+        );
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

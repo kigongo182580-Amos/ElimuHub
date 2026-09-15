@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Notes - ElimuHub</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #0d6efd;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        nav {
+            background: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #0d6efd;
+            font-weight: bold;
+            margin: 0 15px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: 35px auto;
+        }
+
+        .computer {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .computer h2 {
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
+
+        .computer > p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .note {
+            border: 1px solid #ddd;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .note h3 {
+            margin-bottom: 10px;
+        }
+
+        .note p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            color: #198754;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .open {
+            display: inline-block;
+            background: #0d6efd;
+            color: white;
+            text-decoration: none;
+            padding: 11px 20px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .open:hover {
+            background: #084298;
+        }
+
+        .buy {
+            background: #198754;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 7px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+        .buy:hover {
+            background: #146c43;
+        }
+
+        footer {
+            margin-top: 50px;
+            background: #212529;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 94%;
+            }
+
+            .computer {
+                padding: 20px;
+            }
+
+            .buy {
+                margin-left: 0;
+                margin-top: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>ElimuHub</h1>
+    <p>Sehemu Bora ya Kupata Notes na Maarifa</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="notes.html">Notes</a>
+    <a href="login.html">Login</a>
+</nav>
+
+<div class="container">
+
+    <div class="computer">
+
+        <h2>💻 COMPUTER</h2>
+
+        <p>
+            Chagua notes unayotaka kusoma.
+        </p>
+
+        <!-- WORD PROCESSING -->
+
+        <div class="note">
+
+            <h3>📝 Word Processing</h3>
+
+            <p>
+                Notes za Word Processing kwa ajili ya kujifunza
+                matumizi na misingi ya word processing.
+            </p>
+
+            <div class="price">
+                TSh 2,000
+            </div>
+
+            <a
+                href="./Word%20Processing.pdf"
+                target="_blank"
+                class="open">
+                Open Notes
+            </a>
+
+            <button
+                class="buy"
+                onclick="buyNote('Word Processing', 2000)">
+                Buy Now
+            </button>
+
+        </div>
+
+
+        <!-- MICROSOFT EXCEL 2010 -->
+
+        <div class="note">
+
+            <h3>📊 Microsoft Excel 2010</h3>
+
+            <p>
+                Notes za Microsoft Excel 2010 zinazohusisha
+                spreadsheets, formulas, functions na formatting.
+            </p>
+
+            <div class="price">
+                TSh 2,000
+            </div>
+
+          <a
+    href="./%E2%94%80%20Microsoft%20Excel%202010.pdf"
+    target="_blank"
+    class="open">
+    Open Notes
+</a>
+
+            <button
+                class="buy"
+                onclick="buyNote('Microsoft Excel 2010', 2000)">
+                Buy Now
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 ElimuHub. All Rights Reserved.</p>
+    <p>Contact: Kigongo@gmail.com</p>
+</footer>
+
+<script>
+
+function buyNote(noteName, price) {
+
+    alert(
+        "You selected: " +
+        noteName +
+        "\nPrice: TSh " +
+        price +
+        "\n\nPayment system will be connected here."
+    );
+
+}
+
+</script>
+
+</body>
+</html>

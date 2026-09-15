@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Notes - ElimuHub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+        }
+
+        header {
+            background: #0d6efd;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title h2 {
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
+
+        .notes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #0d6efd;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #084298;
+        }
+
+        footer {
+            margin-top: 50px;
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>ElimuHub</h1>
+    <a href="notes.html">← Rudi kwenye Notes</a>
+</header>
+
+<div class="container">
+
+    <div class="title">
+        <h2>Computer Notes</h2>
+        <p>Chagua note unayotaka kusoma</p>
+    </div>
+
+    <div class="notes">
+
+        <!-- WORD PROCESSING -->
+        <div class="card">
+            <h3>Word Processing</h3>
+
+            <p>
+                Notes zinazohusu Word Processing
+                na matumizi ya programu za kuchakata maandishi.
+            </p>
+
+            <button onclick="openWord()">
+                Fungua Note
+            </button>
+        </div>
+
+
+        <!-- MICROSOFT EXCEL -->
+        <div class="card">
+            <h3>Microsoft Excel 2010</h3>
+
+            <p>
+                Notes kuhusu Microsoft Excel 2010,
+                formulas, functions na spreadsheet.
+            </p>
+
+            <button onclick="openExcel()">
+                Fungua Note
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 ElimuHub - Sehemu Bora ya Kupata Notes na Maarifa</p>
+</footer>
+
+
+<script>
+
+function openWord() {
+    window.open("Word%20Processing.pdf.pdf", "_blank");
+}
+
+function openExcel() {
+    window.open("Excel.pdf", "_blank");
+}
+
+</script>
+
+</body>
+</html>

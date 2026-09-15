@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Elimuhub - Login</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        Elimu<span>hub</span>
+    </div>
+
+    <nav class="navbar">
+
+        <a href="index.html">Home</a>
+        <a href="notes.html">Notes</a>
+        <a href="#">Courses</a>
+        <a href="#">About Us</a>
+        <a href="#contact">Contact</a>
+
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Welcome to <span>Elimuhub</span>
+        </h1>
+
+        <h2>
+            Login to Your Account
+        </h2>
+
+        <p>
+            Ingia kwenye account yako ili kuendelea
+            kujifunza kupitia Elimuhub.
+        </p>
+
+
+        <form
+            id="loginForm"
+            style="
+                max-width:420px;
+                margin:30px auto 0;
+                text-align:left;
+            "
+        >
+
+            <label
+                for="email"
+                style="display:block;margin-bottom:8px;font-weight:bold;"
+            >
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+                style="
+                    width:100%;
+                    padding:14px;
+                    margin-bottom:20px;
+                    border:1px solid #cbd5e1;
+                    border-radius:8px;
+                "
+            >
+
+
+            <label
+                for="password"
+                style="display:block;margin-bottom:8px;font-weight:bold;"
+            >
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                required
+                style="
+                    width:100%;
+                    padding:14px;
+                    margin-bottom:25px;
+                    border:1px solid #cbd5e1;
+                    border-radius:8px;
+                "
+            >
+
+
+            <button
+                type="submit"
+                class="login-btn"
+                style="width:100%;padding:14px;"
+            >
+                Login
+            </button>
+
+        </form>
+
+
+        <p style="margin-top:25px;">
+
+            Don't have an account?
+
+            <a
+                href="register.html"
+                style="color:#2563eb;font-weight:bold;"
+            >
+                Create Account
+            </a>
+
+        </p>
+
+
+        <br>
+
+        <a
+            href="index.html"
+            class="secondary-btn"
+        >
+            Back to Home
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer
+    class="footer"
+    id="contact"
+>
+
+    <div class="footer-content">
+
+        <div>
+
+            <h2>
+                Elimu<span>hub</span>
+            </h2>
+
+            <p>
+                Sehemu bora ya kupata notes
+                na maarifa kwa wanafunzi.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Quick Links
+            </h3>
+
+            <a href="index.html">Home</a>
+            <a href="notes.html">Notes</a>
+            <a href="#">Courses</a>
+            <a href="#">About Us</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Contact
+            </h3>
+
+            <p>
+                Email: Kigongo@gmail.com
+            </p>
+
+            <p>
+                Phone: 0740330068
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        <p>
+            © 2026 Elimuhub. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+document
+.getElementById("loginForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    const email =
+        document
+        .getElementById("email")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const password =
+        document
+        .getElementById("password")
+        .value;
+
+
+    /* GET ACCOUNT */
+
+    const savedAccount =
+        localStorage.getItem(
+            "elimuhubUser"
+        );
+
+
+    /* CHECK ACCOUNT */
+
+    if (!savedAccount) {
+
+        alert(
+            "Hakuna account iliyopo. Tafadhali Create Account kwanza."
+        );
+
+        return;
+
+    }
+
+
+    const account =
+        JSON.parse(savedAccount);
+
+
+    /* CHECK LOGIN DETAILS */
+
+    if (
+        email === account.email &&
+        password === account.password
+    ) {
+
+        localStorage.setItem(
+            "elimuhubLoggedIn",
+            "true"
+        );
+
+
+        alert(
+            "Login successful! Karibu " +
+            account.name
+        );
+
+
+        window.location.href =
+            "./index.html";
+
+    } else {
+
+        alert(
+            "Email au password sio sahihi."
+        );
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElimuHub - Notes & Knowledge</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #0b5ed7;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav button {
+            background: white;
+            color: #0b5ed7;
+            border: none;
+            padding: 10px 16px;
+            margin-left: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        nav button:hover {
+            background: #e8f0ff;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px;
+            background: white;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #0b5ed7;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .hero button {
+            background: #0b5ed7;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .hero button:hover {
+            background: #084db2;
+        }
+
+        .section {
+            padding: 45px 7%;
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0b5ed7;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .card h3 {
+            color: #0b5ed7;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 18px;
+        }
+
+        .card button {
+            background: #0b5ed7;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .modal-content h2 {
+            text-align: center;
+            color: #0b5ed7;
+            margin-bottom: 20px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .modal-content button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 6px;
+            background: #0b5ed7;
+            color: white;
+            cursor: pointer;
+        }
+
+        .close {
+            float: right;
+            font-size: 25px;
+            cursor: pointer;
+            color: #555;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">ElimuHub</div>
+
+    <nav>
+        <button onclick="openLogin()">Login</button>
+        <button onclick="openRegister()">Create Account</button>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Karibu ElimuHub</h1>
+
+    <p>Sehemu Bora ya Kupata Notes na Maarifa</p>
+
+    <button onclick="openNotes()">Angalia Notes</button>
+</section>
+
+<section class="section">
+    <h2>Notes Zetu</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Computer Science</h3>
+            <p>Notes za Computer Science na Introduction to Computer.</p>
+            <button onclick="openNotes()">Angalia Notes</button>
+        </div>
+
+        <div class="card">
+            <h3>Business</h3>
+            <p>Notes mbalimbali za Business na masomo yanayohusiana.</p>
+            <button onclick="openNotes()">Angalia Notes</button>
+        </div>
+
+        <div class="card">
+            <h3>Microsoft Excel</h3>
+            <p>Jifunze Microsoft Excel 2010 na matumizi yake.</p>
+            <button onclick="openNotes()">Angalia Notes</button>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 ElimuHub - Sehemu Bora ya Kupata Notes na Maarifa</p>
+    <p>Contact: Kigongo@gmail.com</p>
+</footer>
+
+
+<!-- LOGIN MODAL -->
+
+<div class="modal" id="loginModal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModals()">&times;</span>
+
+        <h2>Login</h2>
+
+        <input type="email" id="loginEmail" placeholder="Email">
+
+        <input type="password" id="loginPassword" placeholder="Password">
+
+        <button onclick="login()">Login</button>
+
+        <p class="message" id="loginMessage"></p>
+
+    </div>
+
+</div>
+
+
+<!-- REGISTER MODAL -->
+
+<div class="modal" id="registerModal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeModals()">&times;</span>
+
+        <h2>Create Account</h2>
+
+        <input type="email" id="registerEmail" placeholder="Email">
+
+        <input type="password" id="registerPassword" placeholder="Create Password">
+
+        <input type="password" id="confirmPassword" placeholder="Confirm Password">
+
+        <button onclick="register()">Create Account</button>
+
+        <p class="message" id="registerMessage"></p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function openLogin() {
+    document.getElementById("loginModal").style.display = "flex";
+}
+
+function openRegister() {
+    document.getElementById("registerModal").style.display = "flex";
+}
+
+function closeModals() {
+    document.getElementById("loginModal").style.display = "none";
+    document.getElementById("registerModal").style.display = "none";
+}
+
+
+/* CREATE ACCOUNT */
+
+function register() {
+
+    let email = document.getElementById("registerEmail").value.trim();
+    let password = document.getElementById("registerPassword").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+
+    let message = document.getElementById("registerMessage");
+
+    if (email === "" || password === "" || confirmPassword === "") {
+        message.style.color = "red";
+        message.innerText = "Tafadhali jaza sehemu zote.";
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        message.style.color = "red";
+        message.innerText = "Passwords hazifanani.";
+        return;
+    }
+
+    localStorage.setItem("elimuHubEmail", email);
+    localStorage.setItem("elimuHubPassword", password);
+
+    message.style.color = "green";
+    message.innerText = "Account imetengenezwa successfully!";
+
+}
+
+
+/* LOGIN */
+
+function login() {
+
+    let email = document.getElementById("loginEmail").value.trim();
+    let password = document.getElementById("loginPassword").value;
+
+    let savedEmail = localStorage.getItem("elimuHubEmail");
+    let savedPassword = localStorage.getItem("elimuHubPassword");
+
+    let message = document.getElementById("loginMessage");
+
+    if (savedEmail === null || savedPassword === null) {
+
+        message.style.color = "red";
+        message.innerText = "Huna account. Tafadhali Create Account kwanza.";
+
+        return;
+    }
+
+    if (email === savedEmail && password === savedPassword) {
+
+        message.style.color = "green";
+        message.innerText = "Login successful!";
+
+        setTimeout(function() {
+            window.location.href = "notes.html";
+        }, 1000);
+
+    } else {
+
+        message.style.color = "red";
+        message.innerText = "Email au password sio sahihi.";
+
+    }
+
+}
+
+
+/* NOTES */
+
+function openNotes() {
+
+    let savedEmail = localStorage.getItem("elimuHubEmail");
+
+    if (savedEmail === null) {
+
+        alert("Tafadhali Create Account au Login kwanza.");
+
+        openLogin();
+
+        return;
+    }
+
+    window.location.href = "notes.html";
+}
+
+
+window.onclick = function(event) {
+
+    let loginModal = document.getElementById("loginModal");
+    let registerModal = document.getElementById("registerModal");
+
+    if (event.target === loginModal) {
+        loginModal.style.display = "none";
+    }
+
+    if (event.target === registerModal) {
+        registerModal.style.display = "none";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
