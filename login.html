@@ -51,11 +51,7 @@
 
         <form
             id="loginForm"
-            style="
-                max-width:420px;
-                margin:30px auto 0;
-                text-align:left;
-            "
+            style="max-width:420px;margin:30px auto 0;text-align:left;"
         >
 
             <label
@@ -70,13 +66,7 @@
                 id="email"
                 placeholder="Enter your email"
                 required
-                style="
-                    width:100%;
-                    padding:14px;
-                    margin-bottom:20px;
-                    border:1px solid #cbd5e1;
-                    border-radius:8px;
-                "
+                style="width:100%;padding:14px;margin-bottom:20px;border:1px solid #cbd5e1;border-radius:8px;"
             >
 
 
@@ -92,13 +82,7 @@
                 id="password"
                 placeholder="Enter your password"
                 required
-                style="
-                    width:100%;
-                    padding:14px;
-                    margin-bottom:25px;
-                    border:1px solid #cbd5e1;
-                    border-radius:8px;
-                "
+                style="width:100%;padding:14px;margin-bottom:25px;border:1px solid #cbd5e1;border-radius:8px;"
             >
 
 
@@ -206,11 +190,45 @@
 </footer>
 
 
-<script>
+<script type="module">
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword
+} from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyAacbDkpbybQfYmZ06MbxqHJ3-6d4QvLSU",
+
+    authDomain: "elimuhub-a547d.firebaseapp.com",
+
+    projectId: "elimuhub-a547d",
+
+    storageBucket: "elimuhub-a547d.firebasestorage.app",
+
+    messagingSenderId: "959947810194",
+
+    appId: "1:959947810194:web:cddae0e371addce0048d4b",
+
+    measurementId: "G-8TRQ28K043"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
 
 document
 .getElementById("loginForm")
-.addEventListener("submit", function(event) {
+.addEventListener("submit", async function(event) {
 
     event.preventDefault();
 
@@ -229,58 +247,51 @@ document
         .value;
 
 
-    /* GET ACCOUNT */
+    try {
 
-    const savedAccount =
-        localStorage.getItem(
-            "elimuhubUser"
-        );
-
-
-    /* CHECK ACCOUNT */
-
-    if (!savedAccount) {
-
-        alert(
-            "Hakuna account iliyopo. Tafadhali Create Account kwanza."
-        );
-
-        return;
-
-    }
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
 
-    const account =
-        JSON.parse(savedAccount);
-
-
-    /* CHECK LOGIN DETAILS */
-
-    if (
-        email === account.email &&
-        password === account.password
-    ) {
-
-        localStorage.setItem(
-            "elimuhubLoggedIn",
-            "true"
-        );
+        const user =
+            userCredential.user;
 
 
         alert(
             "Login successful! Karibu " +
-            account.name
+            (user.displayName || "Elimuhub")
         );
 
 
-        window.location.href =
-            "./index.html";
+        window.location.href = "index.html";
 
-    } else {
 
-        alert(
-            "Email au password sio sahihi."
-        );
+    } catch (error) {
+
+        console.error(error);
+
+
+        if (
+            error.code === "auth/invalid-credential" ||
+            error.code === "auth/wrong-password" ||
+            error.code === "auth/user-not-found"
+        ) {
+
+            alert(
+                "Email au password sio sahihi."
+            );
+
+        } else {
+
+            alert(
+                "Imeshindikana kuingia. Jaribu tena."
+            );
+
+        }
 
     }
 
