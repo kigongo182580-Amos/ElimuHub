@@ -19,13 +19,11 @@
     </div>
 
     <nav class="navbar">
-
         <a href="index.html">Home</a>
         <a href="notes.html">Notes</a>
         <a href="#">Courses</a>
         <a href="#">About Us</a>
         <a href="#contact">Contact</a>
-
     </nav>
 
 </header>
@@ -35,13 +33,9 @@
 
     <div class="hero-content">
 
-        <h1>
-            Join <span>Elimuhub</span>
-        </h1>
+        <h1>Join <span>Elimuhub</span></h1>
 
-        <h2>
-            Create Your Account
-        </h2>
+        <h2>Create Your Account</h2>
 
         <p>
             Tengeneza account yako ili kuendelea
@@ -51,11 +45,7 @@
 
         <form
             id="registerForm"
-            style="
-                max-width:420px;
-                margin:30px auto 0;
-                text-align:left;
-            "
+            style="max-width:420px;margin:30px auto 0;text-align:left;"
         >
 
             <label
@@ -70,13 +60,7 @@
                 id="fullname"
                 placeholder="Enter your full name"
                 required
-                style="
-                    width:100%;
-                    padding:14px;
-                    margin-bottom:20px;
-                    border:1px solid #cbd5e1;
-                    border-radius:8px;
-                "
+                style="width:100%;padding:14px;margin-bottom:20px;border:1px solid #cbd5e1;border-radius:8px;"
             >
 
 
@@ -92,13 +76,7 @@
                 id="email"
                 placeholder="Enter your email"
                 required
-                style="
-                    width:100%;
-                    padding:14px;
-                    margin-bottom:20px;
-                    border:1px solid #cbd5e1;
-                    border-radius:8px;
-                "
+                style="width:100%;padding:14px;margin-bottom:20px;border:1px solid #cbd5e1;border-radius:8px;"
             >
 
 
@@ -115,13 +93,7 @@
                 placeholder="Create password"
                 required
                 minlength="6"
-                style="
-                    width:100%;
-                    padding:14px;
-                    margin-bottom:20px;
-                    border:1px solid #cbd5e1;
-                    border-radius:8px;
-                "
+                style="width:100%;padding:14px;margin-bottom:20px;border:1px solid #cbd5e1;border-radius:8px;"
             >
 
 
@@ -138,13 +110,7 @@
                 placeholder="Confirm password"
                 required
                 minlength="6"
-                style="
-                    width:100%;
-                    padding:14px;
-                    margin-bottom:25px;
-                    border:1px solid #cbd5e1;
-                    border-radius:8px;
-                "
+                style="width:100%;padding:14px;margin-bottom:25px;border:1px solid #cbd5e1;border-radius:8px;"
             >
 
 
@@ -187,18 +153,13 @@
 </section>
 
 
-<footer
-    class="footer"
-    id="contact"
->
+<footer class="footer" id="contact">
 
     <div class="footer-content">
 
         <div>
 
-            <h2>
-                Elimu<span>hub</span>
-            </h2>
+            <h2>Elimu<span>hub</span></h2>
 
             <p>
                 Sehemu bora ya kupata notes
@@ -210,9 +171,7 @@
 
         <div>
 
-            <h3>
-                Quick Links
-            </h3>
+            <h3>Quick Links</h3>
 
             <a href="index.html">Home</a>
             <a href="notes.html">Notes</a>
@@ -224,17 +183,11 @@
 
         <div>
 
-            <h3>
-                Contact
-            </h3>
+            <h3>Contact</h3>
 
-            <p>
-                Email: Kigongo@gmail.com
-            </p>
+            <p>Email: Kigongo@gmail.com</p>
 
-            <p>
-                Phone: 0740330068
-            </p>
+            <p>Phone: 0740330068</p>
 
         </div>
 
@@ -243,20 +196,53 @@
 
     <div class="copyright">
 
-        <p>
-            © 2026 Elimuhub. All Rights Reserved.
-        </p>
+        <p>© 2026 Elimuhub. All Rights Reserved.</p>
 
     </div>
 
 </footer>
 
 
-<script>
+<script type="module">
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    updateProfile
+} from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyAacbDkpbybQfYmZ06MbxqHJ3-6d4QvLSU",
+
+    authDomain: "elimuhub-a547d.firebaseapp.com",
+
+    projectId: "elimuhub-a547d",
+
+    storageBucket: "elimuhub-a547d.firebasestorage.app",
+
+    messagingSenderId: "959947810194",
+
+    appId: "1:959947810194:web:cddae0e371addce0048d4b",
+
+    measurementId: "G-8TRQ28K043"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
 
 document
 .getElementById("registerForm")
-.addEventListener("submit", function(event) {
+.addEventListener("submit", async function(event) {
 
     event.preventDefault();
 
@@ -299,56 +285,69 @@ document
 
     if (password.length < 6) {
 
-        alert(
-            "Password lazima iwe na characters 6 au zaidi."
-        );
+        alert("Password lazima iwe na characters 6 au zaidi.");
 
         return;
 
     }
 
 
-    const account = {
+    try {
 
-        name: name,
-
-        email: email,
-
-        password: password
-
-    };
-
-
-    /* SAVE ACCOUNT */
-
-    localStorage.setItem(
-        "elimuhubUser",
-        JSON.stringify(account)
-    );
+        const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
 
-    /* CHECK IF SAVED */
-
-    const saved =
-        localStorage.getItem(
-            "elimuhubUser"
+        await updateProfile(
+            userCredential.user,
+            {
+                displayName: name
+            }
         );
 
-
-    if (saved) {
 
         alert(
-            "Account imetengenezwa successfully!"
+            "Account imetengenezwa successfully! Karibu " + name
         );
 
-        window.location.href =
-            "./login.html";
 
-    } else {
+        window.location.href = "login.html";
 
-        alert(
-            "Account haikuweza kuhifadhiwa. Jaribu tena."
-        );
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        if (error.code === "auth/email-already-in-use") {
+
+            alert(
+                "Email hii tayari ina account. Tafadhali login."
+            );
+
+        } else if (error.code === "auth/invalid-email") {
+
+            alert(
+                "Email uliyoingiza si sahihi."
+            );
+
+        } else if (error.code === "auth/weak-password") {
+
+            alert(
+                "Password ni dhaifu. Tumia password yenye nguvu zaidi."
+            );
+
+        } else {
+
+            alert(
+                "Imeshindikana kutengeneza account. Jaribu tena."
+            );
+
+        }
 
     }
 
